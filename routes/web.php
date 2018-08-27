@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/user-list', function(){
+    return view('user-list')->with(['users' => App\User::all()]);
+})->name('user.list');
