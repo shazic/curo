@@ -13897,16 +13897,28 @@ __webpack_require__(13);
 
 window.Vue = __webpack_require__(36);
 
+window.Event = new Vue();
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(39));
+Vue.component('survey', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+    data: {
+        allUsers: []
+    },
+    methods: {
+        addUsers: function addUsers() {}
+    },
+    computed: {
+        remainingUsers: function remainingUsers() {},
+        selectedUsers: function selectedUsers() {}
+    }
+
 });
 
 /***/ }),
@@ -47204,7 +47216,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/Survey.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47213,9 +47225,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+    hotAPI.createRecord("data-v-7f07ff51", Component.options)
   } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
+    hotAPI.reload("data-v-7f07ff51", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47356,11 +47368,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: function props() {
+        name: String;
+        surveyId: Number;
+    },
+    data: function data() {
+        return {
+            surveyName: null,
+            surveyIdNum: null,
+            target: null,
+            remaining: []
+        };
+    },
     mounted: function mounted() {
+        this.surveyName = this.name;
+        this.surveyIdNum = this.surveyId;
+        this.target = this.surveyIdNum;
+
         console.log('Component mounted.');
-    }
+    },
+
+    methods: {}
 });
 
 /***/ }),
@@ -47371,29 +47427,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("tr", [
+      _c("td", [
+        _vm._v("\n            " + _vm._s(_vm.surveyName) + "\n        ")
+      ]),
+      _vm._v(" "),
+      _c("td", [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { "data-toggle": "modal", "data-target": _vm.target },
+            on: { click: _vm.addUsers }
+          },
+          [_vm._v("Add Users")]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: _vm.target,
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "selectusers",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "ul",
+                  [
+                    _vm._l(_vm.remaining, function(user) {
+                      return _c("li", [_vm._v(_vm._s(user.name))])
+                    }),
+                    _vm._v(" "),
+                    _c("button", [_vm._v("Select")])
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-success" }, [
+        _vm._v("Submit Survey")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title", attrs: { id: "selectusers" } }, [
+        _vm._v("Modal title")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Save changes")]
+      )
     ])
   }
 ]
@@ -47402,7 +47551,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7f07ff51", module.exports)
   }
 }
 

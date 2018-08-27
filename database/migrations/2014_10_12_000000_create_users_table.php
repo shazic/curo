@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
-            //$table->timestamp('deleted_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
             $table->text('notification_preferences')->nullable();
             $table->integer('reward_points')->unsigned()->nullable();
