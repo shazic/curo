@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Survey;
+use App\User;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller
@@ -14,7 +15,10 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        return view('survey')->with(['surveys' => Survey::all()]);
+        return view('survey')->with([
+            'surveys' => Survey::all(),
+            'users'   => User::all()
+        ]);
     }
 
     /**
@@ -35,7 +39,15 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * 
+         * Requirements for handling this is not clear.
+         * Add logic to handle submit request.
+         * 
+         */
+        
+        $req = $request->all();
+        return("Successfully received request");
     }
 
     /**
